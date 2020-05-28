@@ -8,8 +8,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;
 app.use(express.json()); // to be able to get access to the req.body
-
-
+app.use((req, res, next) => {
+  console.log('hello from middleware');
+  next();
+});
 
 app.route('/api/v1/tours').get(getTours).post(createTour);
 app.route('/api/v1/tours/:id').get(getTour).patch(updateTour).delete(deleteTour);

@@ -1,5 +1,4 @@
-const fs = require('fs');
-const tours = JSON.parse(fs.readFileSync('./data/tours.json'));
+const tours = require('./getData');
 module.exports = (req, res) => {
   const tour = tours.find((el) => el._id === req.params.id);
   console.log(tour);

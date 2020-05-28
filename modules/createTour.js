@@ -1,5 +1,4 @@
-const fs = require('fs');
-const tours = JSON.parse(fs.readFileSync('./data/tours.json'));
+const tours = require('./getData');
 module.exports = (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
