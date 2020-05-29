@@ -1,3 +1,9 @@
+const getUsers = require('./modules/getUsers');
+const getUser = require('./modules/getUser');
+const createUser = require('./modules/createUser');
+const updateUser = require('./modules/updateUser');
+const deleteUser = require('./modules/deleteUser');
+
 const getTours = require('./modules/getTours');
 const updateTour = require('./modules/updateTour');
 const createTour = require('./modules/createTour');
@@ -13,11 +19,11 @@ app.use((req, res, next) => {
   console.log('hello from middleware');
   next();
 });
-
+app.route('/api/v1/users').get(getUsers);
+app.route('/api/v1/user/:id').get(getUser).post(createUser).patch(updateUser).delete(deleteUser);
 app.route('/api/v1/tours').get(getTours).post(createTour);
 app.route('/api/v1/tours/:id').get(getTour).patch(updateTour).delete(deleteTour);
 
-app.patch('/api/v1/tours/:id', (req, res) => {});
 app.listen(port, () => {
   console.log(`server is up on port ${port}`);
 });
